@@ -1,5 +1,4 @@
 import requests, time
-import cv2
 
 print("\n---> This is a Site Connectivity Checker <---\n")
 print("Input your URL in the following format 'http://www.google.com'")
