@@ -2,8 +2,10 @@ import requests, time
 
 print("\n---> This is a Site Connectivity Checker <---\n")
 print("Input your URL in the following format 'http://www.google.com'")
-url = 1
+url = "http://google.com"
 diff = 1
+count = 1
+flag = 1
 
 def initialize():
     url = input("Enter a URL to check: ")
@@ -14,7 +16,7 @@ def initialize():
 
 url, diff, count = initialize()
 print("")
-flag = 1
+
 # response = requests.get(url)
 while True:
 
