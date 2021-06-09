@@ -1,11 +1,8 @@
 import requests, time
 import socket
 
-url = "http://www.google.com"
-diff = 1
-flag = 1
 connectivity = False
-count = 1
+temp = 0
 
 ipaddress = socket.gethostbyname(socket.gethostname())
 if ipaddress == "127.0.0.1":
@@ -25,8 +22,15 @@ if connectivity:
 
     def initialize():
         url = input("Enter a URL to check: ")
+        if url == "":
+            url = "http://www.google.com"
         diff = input(f"Ping {url} on an interval of (seconds): ")
+        if diff == "":
+            diff = 1
         count = input(f"Ping {url} for how many times (number of times): ")
+        if count == "":
+            count = 1
+            count = int(count)
         return url, diff, count
 
 
@@ -37,14 +41,9 @@ if connectivity:
     while True:
 
         try:
-            if flag % (int(count) + 1) == 0:
-                print(f"\n{url} was pinged for {count} times\n")
-                url, diff, count = initialize()
-                print("")
 
             response = requests.get(url)
             status_code = response.status_code
-            # print("Enter 'Q' to stop")
             if status_code == 200:
                 print(f"{url} is LIVE, the site responded with a status code {status_code}")
             if status_code == 301:
@@ -69,4 +68,9 @@ if connectivity:
             diff = input(f"Ping {url} on an interval of (seconds): ")
             count = input(f"Ping {url} for how many times (number of times): ")
         time.sleep(int(diff))
-        flag = flag + 1
+        temp = temp + 1
+        if temp == int(count):
+            temp = 0
+            print(f"\n{url} was pinged for {count} times\n")
+            url, diff, count = initialize()
+            print("")
