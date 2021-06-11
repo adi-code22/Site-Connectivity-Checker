@@ -17,7 +17,6 @@ def initialize():
 url, diff, count = initialize()
 print("")
 
-# response = requests.get(url)
 while True:
 
     try:
